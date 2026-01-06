@@ -98,6 +98,16 @@
             66% { transform: translate(-20px, 20px); }
         }
 
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(400px); opacity: 0; }
+        }
+
         /* Header */
         header {
             background: linear-gradient(90deg, rgba(10, 10, 21, 0.95), rgba(45, 27, 78, 0.95));
@@ -1996,6 +2006,42 @@
         function removeFromWishlist(id) {
             wishlist = wishlist.filter(w => w.id !== id);
             updateWishlist();
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            cartModal.classList.toggle('active');
+            if (cartModal.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function showToast(message) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #ff1493, #00d4ff);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 12px;
+                font-weight: bold;
+                z-index: 10000;
+                box-shadow: 0 4px 20px rgba(255, 20, 147, 0.5);
+                animation: slideIn 0.3s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
         }
 
         function checkout() {
