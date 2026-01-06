@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0a0a15">
     <title>CATRACHO HUB E-Commerce Store</title>
     <style>
         :root {
@@ -1029,45 +1033,283 @@
             }
         }
 
+        /* Mobile Styles - Enhanced for iPhone & Android */
         @media (max-width: 768px) {
+            /* Header Mobile */
+            .header-container {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+
             .logo {
-                font-size: 24px;
-                letter-spacing: 1px;
+                font-size: 28px;
+                letter-spacing: 2px;
+                text-align: center;
+                order: 1;
             }
 
             .nav-menu {
                 display: none;
             }
 
-            .search-box {
-                order: 3;
+            .header-actions {
                 width: 100%;
+                order: 2;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .search-box {
+                flex: 1;
+                margin: 0 10px;
+                order: 2;
             }
 
             .search-box input {
                 width: 100%;
+                height: 44px; /* iOS touch target minimum */
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 10px 15px;
+                border-radius: 8px;
             }
 
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 15px;
+            .search-box button {
+                height: 44px;
+                width: 44px;
+                font-size: 18px;
+            }
+
+            .wishlist-icon, .cart-icon {
+                position: relative;
+                font-size: 24px;
+                padding: 10px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                cursor: pointer;
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .wishlist-count, .cart-count {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                background: var(--color-error);
+                color: white;
+                border-radius: 50%;
+                padding: 2px 6px;
+                font-size: 12px;
+                min-width: 18px;
+                text-align: center;
+            }
+
+            /* Hero Mobile */
+            .hero {
+                padding: 60px 20px;
+                text-align: center;
             }
 
             .hero h1 {
-                font-size: 40px;
+                font-size: 32px;
+                line-height: 1.2;
+                margin-bottom: 20px;
             }
 
-            .hero {
-                padding: 80px 20px;
+            .hero p {
+                font-size: 18px;
+                margin-bottom: 30px;
             }
 
+            .hero .btn {
+                width: 100%;
+                max-width: 300px;
+                height: 50px;
+                font-size: 18px;
+                margin: 0 auto;
+            }
+
+            /* Container Mobile */
             .container {
-                padding: 30px 15px;
+                padding: 20px 15px;
             }
 
+            /* Products Grid Mobile */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .product-card {
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .product-card img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .product-card h3 {
+                font-size: 16px;
+                margin: 10px 0;
+            }
+
+            .product-card .price {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 8px 0;
+            }
+
+            .product-card button {
+                width: 100%;
+                height: 44px;
+                font-size: 16px;
+                margin-top: 10px;
+                border-radius: 8px;
+            }
+
+            /* Filters Mobile */
             .filters-container {
                 flex-direction: column;
                 gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .filter-group select {
+                width: 100%;
+                height: 44px;
+                font-size: 16px;
+                padding: 10px;
+                border-radius: 8px;
+            }
+
+            /* Modal Mobile */
+            .modal {
+                width: 95%;
+                max-width: none;
+                margin: 20px;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .cart-panel, .wishlist-panel {
+                width: 100%;
+                height: auto;
+                right: 0;
+                top: 0;
+                transform: none;
+                border-radius: 0;
+            }
+
+            /* Footer Mobile */
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-section {
+                width: 100%;
+            }
+
+            .footer-section h3 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .footer-section ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-section a {
+                padding: 10px;
+                font-size: 16px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Buttons Mobile */
+            .btn {
+                min-height: 44px;
+                padding: 12px 24px;
+                font-size: 16px;
+                border-radius: 8px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Touch-friendly improvements */
+            button, .btn, a[onclick], .clickable {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Prevent horizontal scroll */
+            body {
+                overflow-x: hidden;
+            }
+
+            * {
+                -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            /* Re-enable text selection for inputs */
+            input, textarea {
+                -webkit-user-select: text;
+                -khtml-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
+                user-select: text;
+            }
+        }
+
+        /* Extra small phones (iPhone SE, etc.) */
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .container {
+                padding: 15px 10px;
+            }
+
+            .header-container {
+                padding: 10px;
+            }
+
+            .logo {
+                font-size: 24px;
             }
         }
     </style>
@@ -1275,7 +1517,105 @@
             renderProducts(products);
             updateCart();
             updateWishlist();
+
+            // Mobile-specific enhancements
+            initMobileFeatures();
         });
+
+        // Mobile-specific features
+        function initMobileFeatures() {
+            // Prevent zoom on input focus (iOS)
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    // Small delay to ensure viewport is set
+                    setTimeout(() => {
+                        if (window.innerWidth < 768) {
+                            document.body.style.position = 'fixed';
+                            document.body.style.width = '100%';
+                        }
+                    }, 100);
+                });
+
+                input.addEventListener('blur', () => {
+                    document.body.style.position = '';
+                    document.body.style.width = '';
+                });
+            });
+
+            // Improve touch interactions
+            const touchElements = document.querySelectorAll('button, .btn, a[onclick], .product-card, .wishlist-icon, .cart-icon');
+            touchElements.forEach(element => {
+                element.addEventListener('touchstart', () => {
+                    element.style.transform = 'scale(0.98)';
+                });
+
+                element.addEventListener('touchend', () => {
+                    element.style.transform = '';
+                });
+            });
+
+            // Close modals when tapping outside on mobile
+            document.addEventListener('touchstart', (e) => {
+                const modals = document.querySelectorAll('.cart-modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'flex' && !modal.contains(e.target)) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+
+            // Add swipe gestures for modals (optional enhancement)
+            let startX, startY;
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchend', (e) => {
+                if (!startX || !startY) return;
+
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+
+                // Swipe right to close cart/wishlist
+                if (Math.abs(diffX) > 100 && Math.abs(diffY) < 50) {
+                    const cartModal = document.getElementById('cartModal');
+                    const wishlistModal = document.getElementById('wishlistModal');
+
+                    if (cartModal.style.display === 'flex') {
+                        toggleCart();
+                    } else if (wishlistModal.style.display === 'flex') {
+                        toggleWishlist();
+                    }
+                }
+            });
+
+            // Prevent double-tap zoom
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', (e) => {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Add viewport height fix for mobile browsers
+            function setVH() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', () => {
+                setTimeout(setVH, 100);
+            });
+        }
 
         function renderProducts(productsToRender) {
             const grid = document.getElementById('productsGrid');
