@@ -1970,6 +1970,7 @@
                             <input type="number" value="${item.quantity}" readonly>
                             <button onclick="increaseQuantity(${item.id})">+</button>
                         </div>
+                        <div class="cart-item-total">Total: $${(item.price * item.quantity).toFixed(2)}</div>
                         <div class="remove-item" onclick="removeFromCart(${item.id})">Remove</div>
                     </div>
                 </div>
@@ -1977,6 +1978,16 @@
 
             document.getElementById('checkoutBtn').disabled = false;
             updateTotals();
+        }
+
+        function updateTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const tax = subtotal * 0.1;
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('taxAmount').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
         }
 
         function increaseQuantity(id) {
