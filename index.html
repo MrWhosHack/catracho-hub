@@ -1065,11 +1065,11 @@
             }
 
             .nav-menu {
-                display: none; /* Hide desktop menu */
+                display: none !important; /* Hide desktop menu */
             }
 
             .mobile-nav-toggle {
-                display: block;
+                display: flex !important;
                 background: none;
                 border: none;
                 color: white;
@@ -1080,14 +1080,13 @@
                 background: rgba(255, 255, 255, 0.1);
                 min-width: 44px;
                 min-height: 44px;
-                display: flex;
                 align-items: center;
                 justify-content: center;
                 order: 1;
             }
 
             .mobile-nav-menu {
-                display: block;
+                display: block !important;
                 position: fixed;
                 top: 70px;
                 left: 0;
@@ -1183,7 +1182,7 @@
 
             /* Mobile Bottom Navigation */
             .mobile-bottom-nav {
-                display: block;
+                display: block !important;
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -1239,7 +1238,7 @@
 
             /* Mobile Search */
             .mobile-search-toggle {
-                display: block;
+                display: flex !important;
                 background: none;
                 border: none;
                 color: white;
@@ -1250,7 +1249,6 @@
                 background: rgba(255, 255, 255, 0.1);
                 min-width: 40px;
                 min-height: 40px;
-                display: flex;
                 align-items: center;
                 justify-content: center;
                 order: 4;
