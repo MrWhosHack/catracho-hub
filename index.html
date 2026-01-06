@@ -50,6 +50,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            padding-bottom: 80px; /* Space for mobile bottom nav */
         }
 
         @keyframes bgShift {
@@ -1037,59 +1038,119 @@
         @media (max-width: 768px) {
             /* Header Mobile */
             .header-container {
-                flex-direction: column;
+                flex-direction: row;
                 padding: 15px;
-                gap: 15px;
+                gap: 10px;
+                height: auto;
+                min-height: 70px;
             }
 
             .logo {
-                font-size: 28px;
-                letter-spacing: 2px;
+                font-size: 24px;
+                letter-spacing: 1px;
+                flex: 1;
                 text-align: center;
-                order: 1;
+                order: 2;
             }
 
             .nav-menu {
-                display: none;
+                display: none; /* Hide desktop menu */
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 10px;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.1);
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                order: 1;
+            }
+
+            .mobile-nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(180deg, rgba(10, 10, 21, 0.98), rgba(45, 27, 78, 0.98));
+                backdrop-filter: blur(20px);
+                border-top: 2px solid;
+                border-image: linear-gradient(90deg, #ff1493, #00d4ff, #00ff88) 1;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 99;
+            }
+
+            .mobile-nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-nav-menu ul {
+                list-style: none;
+                padding: 20px;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .mobile-nav-menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 700;
+                padding: 15px 20px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+                text-align: center;
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .mobile-nav-menu a:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
             }
 
             .header-actions {
-                width: 100%;
-                order: 2;
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+                gap: 10px;
+                order: 3;
             }
 
             .search-box {
-                flex: 1;
-                margin: 0 10px;
-                order: 2;
-            }
-
-            .search-box input {
-                width: 100%;
-                height: 44px; /* iOS touch target minimum */
-                font-size: 16px; /* Prevents zoom on iOS */
-                padding: 10px 15px;
-                border-radius: 8px;
-            }
-
-            .search-box button {
-                height: 44px;
-                width: 44px;
-                font-size: 18px;
+                display: none; /* Hide search on mobile header */
             }
 
             .wishlist-icon, .cart-icon {
                 position: relative;
-                font-size: 24px;
-                padding: 10px;
+                font-size: 20px;
+                padding: 8px;
                 border-radius: 50%;
                 background: rgba(255, 255, 255, 0.1);
                 cursor: pointer;
-                min-width: 44px;
-                min-height: 44px;
+                min-width: 40px;
+                min-height: 40px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1106,6 +1167,128 @@
                 font-size: 12px;
                 min-width: 18px;
                 text-align: center;
+            }
+
+            /* Mobile Bottom Navigation */
+            .mobile-bottom-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(180deg, rgba(10, 10, 21, 0.95), rgba(45, 27, 78, 0.95));
+                backdrop-filter: blur(20px);
+                border-top: 2px solid;
+                border-image: linear-gradient(90deg, #ff1493, #00d4ff, #00ff88) 1;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+                z-index: 100;
+                padding: 10px 0;
+                padding-bottom: calc(10px + env(safe-area-inset-bottom));
+            }
+
+            .mobile-bottom-nav ul {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin: 0;
+                padding: 0 10px;
+                list-style: none;
+            }
+
+            .mobile-bottom-nav li {
+                flex: 1;
+                text-align: center;
+            }
+
+            .mobile-bottom-nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+                padding: 8px 4px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                min-height: 50px;
+                justify-content: center;
+            }
+
+            .mobile-bottom-nav a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateY(-2px);
+            }
+
+            .mobile-bottom-nav .nav-icon {
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
+
+            /* Mobile Search */
+            .mobile-search-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.1);
+                min-width: 40px;
+                min-height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                order: 4;
+            }
+
+            .mobile-search-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(10px);
+                display: none;
+                z-index: 1000;
+                padding-top: 80px;
+            }
+
+            .mobile-search-overlay.active {
+                display: block;
+            }
+
+            .mobile-search-container {
+                padding: 20px;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .mobile-search-container input {
+                width: 100%;
+                height: 50px;
+                font-size: 18px;
+                padding: 15px;
+                border-radius: 12px;
+                border: none;
+                background: rgba(255, 255, 255, 0.9);
+                color: #333;
+            }
+
+            .mobile-search-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                padding: 10px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.2);
             }
 
             /* Hero Mobile */
@@ -1318,6 +1501,7 @@
     <!-- Header -->
     <header>
         <div class="header-container">
+            <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
             <a href="#" class="logo">🛍️ CATRACHO HUB</a>
             <ul class="nav-menu">
                 <li><a onclick="showSection('products')">Shop</a></li>
@@ -1337,9 +1521,49 @@
                     🛒
                     <span class="cart-count" id="cartCount">0</span>
                 </div>
+                <button class="mobile-search-toggle" onclick="toggleMobileSearch()">🔍</button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav-menu" id="mobileNav">
+            <ul>
+                <li><a onclick="showSection('products'); toggleMobileNav();">🛍️ Shop</a></li>
+                <li><a onclick="showSection('about'); toggleMobileNav();">ℹ️ About</a></li>
+                <li><a onclick="showSection('contact'); toggleMobileNav();">📞 Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Search Overlay -->
+        <div class="mobile-search-overlay" id="mobileSearchOverlay">
+            <button class="mobile-search-close" onclick="toggleMobileSearch()">✕</button>
+            <div class="mobile-search-container">
+                <input type="text" id="mobileSearchInput" placeholder="Search products..." onkeyup="searchProducts()">
             </div>
         </div>
     </header>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <ul>
+            <li><a onclick="showSection('products')">
+                <span class="nav-icon">🛍️</span>
+                <span>Shop</span>
+            </a></li>
+            <li><a onclick="toggleMobileSearch()">
+                <span class="nav-icon">🔍</span>
+                <span>Search</span>
+            </a></li>
+            <li><a onclick="toggleWishlist()">
+                <span class="nav-icon">❤️</span>
+                <span>Wishlist</span>
+            </a></li>
+            <li><a onclick="toggleCart()">
+                <span class="nav-icon">🛒</span>
+                <span>Cart</span>
+            </a></li>
+        </ul>
+    </nav>
 
     <!-- Main -->
     <div class="container">
@@ -1810,6 +2034,32 @@
             } else {
                 showToast('Please enter a valid email!');
             }
+        }
+
+        // Mobile Navigation Functions
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        function toggleMobileSearch() {
+            const searchOverlay = document.getElementById('mobileSearchOverlay');
+            searchOverlay.classList.toggle('active');
+
+            if (searchOverlay.classList.contains('active')) {
+                document.getElementById('mobileSearchInput').focus();
+            }
+        }
+
+        // Update search function to work with mobile search
+        function searchProducts() {
+            const searchTerm = (document.getElementById('searchInput')?.value || document.getElementById('mobileSearchInput')?.value || '').toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+            renderProducts(filteredProducts);
         }
     </script>
 </body>
