@@ -287,6 +287,39 @@
             50% { transform: scale(1.3); }
         }
 
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 28px;
+            color: #00d4ff;
+            transition: all 0.3s;
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.6));
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.8), 0 0 15px rgba(255, 20, 147, 0.6));
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            color: #0a0a15;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            border: 2px solid #ff1493;
+            animation: countBounce 0.5s ease;
+        }
+
         /* Container */
         .container {
             max-width: 1200px;
@@ -637,8 +670,9 @@
         }
 
         .cart-modal.active {
-            display: flex;
+            display: flex !important;
             align-items: flex-end;
+            justify-content: center;
         }
 
         .cart-panel {
@@ -1989,7 +2023,13 @@
         }
 
         function toggleWishlist() {
-            document.getElementById('wishlistModal').classList.toggle('active');
+            const wishlistModal = document.getElementById('wishlistModal');
+            wishlistModal.classList.toggle('active');
+            if (wishlistModal.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
         function addToWishlist(productId) {
