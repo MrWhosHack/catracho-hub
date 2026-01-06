@@ -1796,6 +1796,7 @@
             renderProducts(products);
             updateCart();
             updateWishlist();
+            updateTotals();
 
             // Mobile-specific enhancements
             initMobileFeatures();
@@ -1981,13 +1982,29 @@
         }
 
         function updateTotals() {
+            const subtotalEl = document.getElementById('subtotal');
+            const taxEl = document.getElementById('taxAmount');
+            const totalEl = document.getElementById('totalAmount');
+
+            if (!subtotalEl || !taxEl || !totalEl) {
+                console.error('Cart summary elements not found');
+                return;
+            }
+
+            if (cart.length === 0) {
+                subtotalEl.textContent = '$0.00';
+                taxEl.textContent = '$0.00';
+                totalEl.textContent = '$0.00';
+                return;
+            }
+
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const tax = subtotal * 0.1;
             const total = subtotal + tax;
 
-            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-            document.getElementById('taxAmount').textContent = `$${tax.toFixed(2)}`;
-            document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
+            subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            taxEl.textContent = `$${tax.toFixed(2)}`;
+            totalEl.textContent = `$${total.toFixed(2)}`;
         }
 
         function increaseQuantity(id) {
